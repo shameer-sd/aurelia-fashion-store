@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@200;300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+    --aurelia-black: #0b0b0b;
+    --aurelia-obsidian: #121110;
+    --aurelia-graphite: #1c1a17;
+    --aurelia-cream: #f3eadc;
+    --aurelia-warm-white: #fbf8f2;
+    --aurelia-cashmere: #ede3d4;
+    --aurelia-gold: #c9ad7a;
+    --aurelia-gold-light: #dfc89f;
+    --aurelia-gold-dark: #9b7a45;
+    --aurelia-white: #ffffff;
+    --aurelia-charcoal: #2c2925;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    color-scheme: dark light;
+}
+
+body {
+    margin: 0;
+    background: var(--aurelia-black);
+    color: var(--aurelia-white);
+    font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b0b0b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(201, 173, 122, 0.35);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 173, 122, 0.7);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* =========================================
+   LUXURY DESIGN UTILITIES & GLASSMORPHISM
+========================================= */
+
+.font-serif-luxury {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans-luxury {
+    font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Glassmorphic elements */
+.glass-luxury-dark {
+    background: rgba(11, 11, 11, 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-luxury-light {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glass-luxury-gold {
+    background: rgba(201, 173, 122, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(201, 173, 122, 0.25);
+}
+
+.gold-gradient-text {
+    background: linear-gradient(135deg, #dfc89f 0%, #c9ad7a 50%, #9b7a45 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gold-glow {
+    box-shadow: 0 0 35px -5px rgba(201, 173, 122, 0.3);
+}
+
+.luxury-card-hover {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.12);
+}
+
+/* Keyframes & Animations */
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulseGold {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+.animate-pulse-gold {
+    animation: pulseGold 3s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.skeleton-shimmer {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.skeleton-shimmer::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.25) 20%,
+            rgba(255, 255, 255, 0.5) 60%,
+            rgba(255, 255, 255, 0));
+    animation: shimmer 2s infinite;
+    content: '';
+}
+
+/* =========================================
+   HOME & HERO PRESETS
+========================================= */
+
+.home-page {
+    width: 100%;
+    overflow: hidden;
+}
+
+.mens-collection {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+    background: #171513;
+}
+
+.mens-collection-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.mens-collection::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(90deg,
+            rgba(255, 245, 230, 0.05) 0%,
+            rgba(0, 0, 0, 0) 55%,
+            rgba(0, 0, 0, 0.15) 100%);
+    pointer-events: none;
+}
+
+.mens-content {
+    position: absolute;
+    z-index: 3;
+    left: 7.5%;
+    top: 52%;
+    transform: translateY(-50%);
+    color: #111;
+}
+
+.mens-eyebrow {
+    margin: 0 0 38px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.8;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.mens-content h1 {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(72px, 7.5vw, 126px);
+    font-weight: 500;
+    line-height: 0.8;
+    letter-spacing: -4px;
+    text-transform: uppercase;
+}
+
+.mens-subtitle {
+    position: relative;
+    margin: 44px 0 34px;
+    padding-top: 25px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.mens-subtitle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 58px;
+    height: 1px;
+    background: #111;
+}
+
+.luxury-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    min-width: 280px;
+    min-height: 58px;
+    padding: 0 30px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, box-shadow 0.35s ease;
+    border-radius: 9999px;
+}
+
+.luxury-button span {
+    font-size: 18px;
+    transition: transform 0.35s ease;
+}
+
+.luxury-button:hover {
+    transform: translateY(-3px);
+    background: #202020;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+}
+
+.luxury-button:hover span {
+    transform: translateX(6px);
+}
+
+.mens-side-text {
+    position: absolute;
+    z-index: 3;
+    right: 5.5%;
+    top: 14%;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.mens-side-text::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    margin-top: 22px;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.mens-slider {
+    position: absolute;
+    z-index: 3;
+    left: 7.2%;
+    bottom: 7%;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.slider-line {
+    width: 80px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+    .mens-collection {
+        height: 88vh;
+        min-height: 620px;
+    }
+
+    .mens-collection-image {
+        object-position: 62% center;
+    }
+
+    .mens-content {
+        left: 7%;
+        top: 56%;
+        transform: translateY(-50%);
+    }
+
+    .mens-content h1 {
+        font-size: clamp(52px, 14vw, 84px);
+    }
+}
