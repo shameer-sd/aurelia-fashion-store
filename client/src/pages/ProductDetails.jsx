@@ -30,7 +30,7 @@ function ProductDetails() {
 
             try {
                 const response = await fetch(
-                    fetch(`${API_URL}/api/v1/products/${id}`)
+                    `${API_URL}/api/v1/products/${productId}`
                 )
 
                 const data = await response.json()
@@ -43,7 +43,7 @@ function ProductDetails() {
 
                 // Fetch catalog for related pieces
                 const allRes = await fetch(
-                    fetch(`${API_URL}/api/v1/products`)
+                    `${API_URL}/api/v1/products`
                 )
 
                 const allData = await allRes.json()
