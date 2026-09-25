@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
+import API_URL from '../utils/api'
 
 function Checkout() {
     const { cartItems, clearCart } = useCart()
@@ -65,22 +66,20 @@ function Checkout() {
     }
 
     const createAureliaOrder = async () => {
-        const response = await fetch(
-            'http://localhost:5000/api/v1/orders',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    items: cartItems.map((item) => ({
-                        product: item._id || item.id,
-                        quantity: item.quantity,
-                    })),
-                    shippingAddress,
-                }),
-            }
+        const response = await fetch(`${API_URL}/api/v1/orders`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                items: cartItems.map((item) => ({
+                    product: item._id || item.id,
+                    quantity: item.quantity,
+                })),
+                shippingAddress,
+            }),
+        }
         )
 
         const data = await response.json()
@@ -133,7 +132,7 @@ function Checkout() {
             // ==========================================
 
             const razorpayOrderResponse = await fetch(
-                'http://localhost:5000/api/v1/payments/create-order',
+                `${API_URL}/api/v1/payments/create-order`,
                 {
                     method: 'POST',
                     headers: {
@@ -203,26 +202,24 @@ function Checkout() {
                         // STEP 4 — VERIFY PAYMENT
                         // ==========================================
 
-                        const verifyResponse = await fetch(
-                            'http://localhost:5000/api/v1/payments/verify',
-                            {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type':
-                                        'application/json',
-                                    Authorization: `Bearer ${token}`,
-                                },
-                                body: JSON.stringify({
-                                    razorpay_order_id:
-                                        response.razorpay_order_id,
+                        const verifyResponse = await fetch(`${API_URL}/api/v1/payments/verify`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type':
+                                    'application/json',
+                                Authorization: `Bearer ${token}`,
+                            },
+                            body: JSON.stringify({
+                                razorpay_order_id:
+                                    response.razorpay_order_id,
 
-                                    razorpay_payment_id:
-                                        response.razorpay_payment_id,
+                                razorpay_payment_id:
+                                    response.razorpay_payment_id,
 
-                                    razorpay_signature:
-                                        response.razorpay_signature,
-                                }),
-                            }
+                                razorpay_signature:
+                                    response.razorpay_signature,
+                            }),
+                        }
                         )
 
                         const verifyData =
@@ -340,6 +337,7 @@ function Checkout() {
                             <Link
                                 to="/shop"
                                 className="mt-8 inline-flex min-h-[54px] items-center justify-center rounded-full border border-black bg-black px-9 text-[9px] font-medium uppercase tracking-[2.5px] text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-[#9b7a45] hover:bg-[#9b7a45]"
+                                style={{ color: '#ffffff' }}
                             >
                                 Continue Shopping
 

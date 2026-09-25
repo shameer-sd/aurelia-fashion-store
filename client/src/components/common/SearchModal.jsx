@@ -17,7 +17,7 @@ export default function SearchModal({ isOpen, onClose }) {
             // Fetch products if not yet loaded
             if (products.length === 0) {
                 setLoading(true)
-                fetch('http://localhost:5000/api/v1/products')
+                fetch(' /api/v1/products')
                     .then((res) => res.json())
                     .then((data) => {
                         if (data.products) setProducts(data.products)

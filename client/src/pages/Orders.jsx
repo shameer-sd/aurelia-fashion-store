@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { getProductImageUrl } from '../utils/productImages'
+import API_URL from '../utils/api'
 
 function Orders() {
     const { token } = useAuth()
@@ -14,7 +15,7 @@ function Orders() {
         const fetchOrders = async () => {
             try {
                 const response = await fetch(
-                    'http://localhost:5000/api/v1/orders/my-orders',
+                    `${API_URL}/api/v1/orders/my-orders`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,

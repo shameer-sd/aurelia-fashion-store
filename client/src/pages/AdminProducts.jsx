@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import API_URL from '../utils/api'
 
 const emptyForm = {
     name: '',
@@ -156,10 +157,7 @@ function AdminProducts() {
         try {
             setError('')
 
-            const response = await fetch(
-                'http://localhost:5000/api/v1/products'
-            )
-
+            const response = awaitfetch(`${API_URL}/api/v1/products`)
             const data = await response.json()
 
             if (!response.ok) {
@@ -222,9 +220,8 @@ function AdminProducts() {
 
         try {
             const url = editingId
-                ? `http://localhost:5000/api/v1/products/${editingId}`
-                : 'http://localhost:5000/api/v1/products'
-
+                ? `${API_URL}/api/v1/products/${editingId}`
+                : `${API_URL}/api/v1/products`
             const method = editingId ? 'PUT' : 'POST'
 
             const response = await fetch(url, {
@@ -323,7 +320,7 @@ function AdminProducts() {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/v1/products/${productId}`,
+                `${API_URL}/api/v1/products/${productId}`,
                 {
                     method: 'DELETE',
                     headers: {
@@ -405,7 +402,7 @@ function AdminProducts() {
 
                 try {
                     const response = await fetch(
-                        `http://localhost:5000/api/v1/products/${product._id}`,
+                        `${API_URL}/api/v1/products/${productId}`,
                         {
                             method: 'PUT',
                             headers: {

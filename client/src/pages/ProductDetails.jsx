@@ -5,6 +5,7 @@ import { useWishlist } from '../context/WishlistContext'
 import { useToast } from '../context/ToastContext'
 import { getProductImageUrl } from '../utils/productImages'
 import ProductCard from '../components/products/ProductCard'
+import API_URL from '../utils/api'
 
 function ProductDetails() {
     const { id } = useParams()
@@ -29,7 +30,7 @@ function ProductDetails() {
 
             try {
                 const response = await fetch(
-                    `http://localhost:5000/api/v1/products/${id}`
+                    fetch(`${API_URL}/api/v1/products/${id}`)
                 )
 
                 const data = await response.json()
@@ -42,7 +43,7 @@ function ProductDetails() {
 
                 // Fetch catalog for related pieces
                 const allRes = await fetch(
-                    'http://localhost:5000/api/v1/products'
+                    fetch(`${API_URL}/api/v1/products`)
                 )
 
                 const allData = await allRes.json()
@@ -300,8 +301,8 @@ function ProductDetails() {
                                     type="button"
                                     onClick={handleWishlistToggle}
                                     className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[9px] font-medium uppercase tracking-[1.5px] transition-all ${isFavorited
-                                            ? 'border-[#9b7a45] bg-[#9b7a45]/15 text-[#9b7a45]'
-                                            : 'border-black/15 bg-white/40 text-black/70 hover:border-black/30 hover:bg-white/80'
+                                        ? 'border-[#9b7a45] bg-[#9b7a45]/15 text-[#9b7a45]'
+                                        : 'border-black/15 bg-white/40 text-black/70 hover:border-black/30 hover:bg-white/80'
                                         }`}
                                 >
                                     <svg
@@ -370,8 +371,8 @@ function ProductDetails() {
                                             type="button"
                                             onClick={() => setSelectedSize(sz)}
                                             className={`h-11 w-14 rounded-xl text-xs font-medium uppercase tracking-[1.5px] transition-all ${selectedSize === sz
-                                                    ? 'border-2 border-black bg-black text-white shadow-md'
-                                                    : 'border border-black/15 bg-white/40 text-black/80 hover:border-black/30 hover:bg-white/70'
+                                                ? 'border-2 border-black bg-black text-white shadow-md'
+                                                : 'border border-black/15 bg-white/40 text-black/80 hover:border-black/30 hover:bg-white/70'
                                                 }`}
                                         >
                                             {sz}
@@ -385,8 +386,8 @@ function ProductDetails() {
                                 <div className="flex items-center gap-3">
                                     <span
                                         className={`h-2.5 w-2.5 rounded-full ${isOutOfStock
-                                                ? 'bg-red-500'
-                                                : 'bg-[#9b7a45]'
+                                            ? 'bg-red-500'
+                                            : 'bg-[#9b7a45]'
                                             }`}
                                     />
 

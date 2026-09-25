@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import ProductCard from '../components/products/ProductCard'
-
+import API_URL from '../utils/api'
 function Shop() {
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -22,7 +22,7 @@ function Shop() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/v1/products')
+                const response = await fetch(`${API_URL}/api/v1/products`)
                 const data = await response.json()
 
                 if (!response.ok) {
@@ -226,11 +226,10 @@ function Shop() {
                                     key={g}
                                     type="button"
                                     onClick={() => handleGenderChange(g)}
-                                    className={`rounded-full px-3.5 py-1 text-[10px] font-medium uppercase tracking-[1.5px] transition-all ${
-                                        selectedGender === g
-                                            ? 'bg-black text-white shadow-sm'
-                                            : 'text-black/60 hover:text-black'
-                                    }`}
+                                    className={`rounded-full px-3.5 py-1 text-[10px] font-medium uppercase tracking-[1.5px] transition-all ${selectedGender === g
+                                        ? 'bg-black text-white shadow-sm'
+                                        : 'text-black/60 hover:text-black'
+                                        }`}
                                 >
                                     {g}
                                 </button>
@@ -244,11 +243,10 @@ function Shop() {
                                     key={cat}
                                     type="button"
                                     onClick={() => handleCategoryChange(cat)}
-                                    className={`rounded-full border px-3.5 py-1.5 text-[10px] font-medium uppercase tracking-[1.5px] transition-all whitespace-nowrap ${
-                                        selectedCategory === cat
-                                            ? 'border-[#9b7a45] bg-[#9b7a45] text-white shadow-sm'
-                                            : 'border-black/10 bg-white/40 text-black/60 hover:border-black/25 hover:bg-white/70'
-                                    }`}
+                                    className={`rounded-full border px-3.5 py-1.5 text-[10px] font-medium uppercase tracking-[1.5px] transition-all whitespace-nowrap ${selectedCategory === cat
+                                        ? 'border-[#9b7a45] bg-[#9b7a45] text-white shadow-sm'
+                                        : 'border-black/10 bg-white/40 text-black/60 hover:border-black/25 hover:bg-white/70'
+                                        }`}
                                 >
                                     {cat}
                                 </button>
@@ -281,9 +279,8 @@ function Shop() {
                             <button
                                 type="button"
                                 onClick={() => setGridCols(4)}
-                                className={`rounded-full p-2 transition-all ${
-                                    gridCols === 4 ? 'bg-black text-white' : 'text-black/40 hover:text-black'
-                                }`}
+                                className={`rounded-full p-2 transition-all ${gridCols === 4 ? 'bg-black text-white' : 'text-black/40 hover:text-black'
+                                    }`}
                                 title="4 Column Compact View"
                                 aria-label="4 Column View"
                             >
@@ -297,9 +294,8 @@ function Shop() {
                             <button
                                 type="button"
                                 onClick={() => setGridCols(2)}
-                                className={`rounded-full p-2 transition-all ${
-                                    gridCols === 2 ? 'bg-black text-white' : 'text-black/40 hover:text-black'
-                                }`}
+                                className={`rounded-full p-2 transition-all ${gridCols === 2 ? 'bg-black text-white' : 'text-black/40 hover:text-black'
+                                    }`}
                                 title="2 Column Editorial View"
                                 aria-label="2 Column View"
                             >
@@ -396,9 +392,8 @@ function Shop() {
                     {/* Products Display */}
                     {!loading && filteredProducts.length > 0 && (
                         <div
-                            className={`grid gap-x-6 gap-y-12 sm:grid-cols-2 ${
-                                gridCols === 2 ? 'lg:grid-cols-2 lg:gap-x-12 lg:gap-y-16' : 'lg:grid-cols-4 lg:gap-y-14'
-                            }`}
+                            className={`grid gap-x-6 gap-y-12 sm:grid-cols-2 ${gridCols === 2 ? 'lg:grid-cols-2 lg:gap-x-12 lg:gap-y-16' : 'lg:grid-cols-4 lg:gap-y-14'
+                                }`}
                         >
                             {filteredProducts.map((product) => (
                                 <ProductCard key={product._id || product.id} product={product} />

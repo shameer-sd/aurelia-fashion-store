@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import API_URL from '../utils/api'
 
 function AdminDashboard() {
   const { token } = useAuth()
@@ -19,8 +20,7 @@ function AdminDashboard() {
         setLoading(true)
         setError('')
 
-        const response = await fetch(
-          'http://localhost:5000/api/v1/orders/admin/stats',
+        const response = await fetch(`${API_URL}/api/v1/orders/admin/stats`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { getProductImageUrl } from '../utils/productImages'
+import API_URL from '../utils/api'
 
 function OrderDetails() {
   const { id } = useParams()
@@ -14,13 +15,11 @@ function OrderDetails() {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/v1/orders/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        const response = await fetch(`${API_URL}/api/v1/orders/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
         )
 
         const data = await response.json()

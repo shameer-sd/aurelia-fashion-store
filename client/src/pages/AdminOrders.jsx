@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { getProductImageUrl } from '../utils/productImages'
+import API_URL from '../utils/api'
 
 const statuses = [
   'pending',
@@ -25,7 +26,7 @@ function AdminOrders() {
       setError('')
 
       const response = await fetch(
-        'http://localhost:5000/api/v1/orders/admin/all',
+        `${API_URL}/api/v1/orders/admin/all`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,7 +69,7 @@ function AdminOrders() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/orders/admin/${orderId}/status`,
+        `${API_URL}/api/v1/orders/admin/${orderId}/status`,
         {
           method: 'PUT',
           headers: {
