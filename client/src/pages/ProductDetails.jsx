@@ -30,7 +30,7 @@ function ProductDetails() {
 
             try {
                 const response = await fetch(
-                    `${API_URL}/api/v1/products/${productId}`
+                    `${API_URL}/api/v1/products/${id}`
                 )
 
                 const data = await response.json()
